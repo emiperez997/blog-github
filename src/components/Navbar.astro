@@ -1,13 +1,17 @@
 ---
 const location = Astro.url.pathname;
+
+const active = "text-black dark:text-white underline underline-offset-4";
+const inactive =
+  "dark:text-slate-400 text-slate-700 hover:text-black dark:hover:text-white transition duration-300 ease-in-out";
 ---
 
 <nav
-  class="w-full bg-slate-400 text-black dark:text-white dark:bg-gray-800 p-5 px-20 flex flex-col md:flex-row justify-center gap-5"
+  class="w-full bg-slate-500 text-black dark:text-white dark:bg-gray-700 p-5 px-20 flex flex-col md:flex-row justify-center gap-5"
 >
   <div class="w-full flex justify-center md:justify-start">
     <a href="/" class="font-bold text-xl md:text-2xl flex gap-2 items-center">
-      <span class="text-slate-400">{"{"}</span>
+      <span class="dark:text-slate-400 text-slate-700">{"{"}</span>
       <span class="text-black dark:text-white">Tech Blog</span>
       <span class="text-black dark:text-white">{"}"}</span>
     </a>
@@ -18,24 +22,20 @@ const location = Astro.url.pathname;
       href="/"
       class:list={[
         "text-lg font-semibold",
-        location === "/"
-          ? "text-black dark:text-white underline underline-offset-4"
-          : "text-slate-400",
+        location === "/" ? active : inactive,
       ]}
     >
-      Home
+      Inicio
     </a>
 
     <a
       href="/about"
       class:list={[
         "text-lg font-semibold",
-        location === "/about"
-          ? "text-black dark:text-white underline underline-offset-4"
-          : "text-slate-400",
+        location === "/about" ? active : inactive,
       ]}
     >
-      About
+      Sobre nosotros
     </a>
 
     <a
@@ -43,11 +43,21 @@ const location = Astro.url.pathname;
       class:list={[
         "text-lg font-semibold",
         location === "/blog" || location.includes("/posts/")
-          ? "text-black dark:text-white underline underline-offset-4"
-          : "text-slate-400",
+          ? active
+          : inactive,
       ]}
     >
       Blog
+    </a>
+
+    <a
+      href="/tags"
+      class:list={[
+        "text-lg font-semibold",
+        location === "/tags" ? active : inactive,
+      ]}
+    >
+      Tags
     </a>
   </div>
 </nav>
