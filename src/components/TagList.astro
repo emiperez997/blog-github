@@ -1,0 +1,17 @@
+---
+import { tagBg } from "../utils/styles";
+
+const { tags } = Astro.props;
+---
+
+<ul class="flex flex-wrap gap-2 p-5">
+  {
+    tags.map((tag) => (
+      <li class={`${tagBg[tag]} rounded-lg`}>
+        <a href={`/tags/${tag}`} class={`${tagBg[tag]} p-2 rounded-lg`}>
+          {tag}
+        </a>
+      </li>
+    ))
+  }
+</ul>

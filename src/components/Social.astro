@@ -1,0 +1,17 @@
+---
+const { platform, username } = Astro.props;
+
+const logo = {
+  linkedin: "/logo/linkedin.svg",
+  github: "/logo/github.svg",
+};
+---
+
+<a
+  href={`https://www.${platform}.com/${username}`}
+  class="flex gap-5"
+  target="_blank"
+>
+  <img src={logo[platform]} alt={`Logo ${platform}`} class="w-5 h-5" />
+  {platform[0].toUpperCase() + platform.slice(1)}
+</a>

@@ -1,0 +1,53 @@
+---
+const location = Astro.url.pathname;
+---
+
+<nav
+  class="w-full bg-slate-400 text-black dark:text-white dark:bg-gray-800 p-5 px-20 flex flex-col md:flex-row justify-center gap-5"
+>
+  <div class="w-full flex justify-center md:justify-start">
+    <a href="/" class="font-bold text-xl md:text-2xl flex gap-2 items-center">
+      <span class="text-slate-400">{"{"}</span>
+      <span class="text-black dark:text-white">Tech Blog</span>
+      <span class="text-black dark:text-white">{"}"}</span>
+    </a>
+  </div>
+
+  <div class="w-full flex justify-center md:justify-end items-center gap-5">
+    <a
+      href="/"
+      class:list={[
+        "text-lg font-semibold",
+        location === "/"
+          ? "text-black dark:text-white underline underline-offset-4"
+          : "text-slate-400",
+      ]}
+    >
+      Home
+    </a>
+
+    <a
+      href="/about"
+      class:list={[
+        "text-lg font-semibold",
+        location === "/about"
+          ? "text-black dark:text-white underline underline-offset-4"
+          : "text-slate-400",
+      ]}
+    >
+      About
+    </a>
+
+    <a
+      href="/blog"
+      class:list={[
+        "text-lg font-semibold",
+        location === "/blog" || location.includes("/posts/")
+          ? "text-black dark:text-white underline underline-offset-4"
+          : "text-slate-400",
+      ]}
+    >
+      Blog
+    </a>
+  </div>
+</nav>

@@ -1,0 +1,14 @@
+---
+import Title from "../components/Title.astro";
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout title="About">
+  <Title>
+    <h1 class="text-3xl font-bold" slot="title">Acerca de nuestro blog</h1>
+    <p class="text-lg font-thin" slot="subtitle">
+      Este es un blog de ejemplo para mostrar cómo se puede usar Astro para
+      construir un sitio web estático.
+    </p>
+  </Title>
+</Layout>

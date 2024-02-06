@@ -1,0 +1,36 @@
+---
+import BlogPost from "../components/BlogPost.astro";
+import Title from "../components/Title.astro";
+import Layout from "../layouts/Layout.astro";
+
+// Astro.glob: Nos permite buscar archivos en el sistema de archivos
+const allPosts = await Astro.glob("./posts/*.md");
+---
+
+<Layout title="Blog">
+  <Title>
+    <h1 class="text-3xl font-bold" slot="title">Blog</h1>
+    <p class="text-lg font-thin" slot="subtitle">
+      En este blog encontrarás una bitácora de mi recorrido aprendiendo Astro,
+      un nuevo framework para construir sitios web, entre otras tecnologías.
+    </p>
+  </Title>
+
+  <ul class="flex flex-col w-full justify-center items-center p-5 gap-5">
+    {
+      allPosts.map((post) => {
+        const { title, date, description, url, tags } = post.frontmatter;
+
+        return (
+          <BlogPost
+            title={title}
+            date={date}
+            description={description}
+            url={url}
+            tags={tags}
+          />
+        );
+      })
+    }
+  </ul>
+</Layout>

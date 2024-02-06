@@ -1,0 +1,29 @@
+---
+import Title from "../components/Title.astro";
+import Layout from "./Layout.astro";
+import Content from "../components/Content.astro";
+import { tagBg } from "../utils/styles";
+import TagList from "../components/TagList.astro";
+
+const { frontmatter } = Astro.props;
+---
+
+<Layout title={frontmatter.title}>
+  <Title>
+    <h1 class="text-3xl font-bold" slot="title">{frontmatter.title}</h1>
+    <p class="text-lg font-thin" slot="subtitle">
+      Escrito por {frontmatter.author}
+    </p>
+    <TagList tags={frontmatter.tags} />
+  </Title>
+
+  <Content>
+    <slot />
+  </Content>
+
+  <div class="w-full flex justify-center p-5">
+    <div class="w-80 sm:w-[500px] bg-slate-500 p-5 rounded-lg">
+      <img src={frontmatter.image.url} alt={frontmatter.image.alt} class="" />
+    </div>
+  </div>
+</Layout>

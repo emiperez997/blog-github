@@ -1,0 +1,20 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Title from "../../components/Title.astro";
+import TagList from "../../components/TagList.astro";
+
+const allPost = await Astro.glob("../posts/*.md");
+
+const tags = [...new Set(allPost.flatMap((post) => post.frontmatter.tags))];
+---
+
+<Layout title="Tags">
+  <Title>
+    <span slot="title"> Tags de los artículos</span>
+    <span slot="subtitle"> Aquí se muestran los tags de los artículos</span>
+  </Title>
+
+  <div class="w-full flex justify-center items-center">
+    <TagList tags={tags} />
+  </div>
+</Layout>

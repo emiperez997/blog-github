@@ -1,0 +1,22 @@
+---
+import { tagBg } from "../utils/styles";
+
+const { url, title, description, date } = Astro.props;
+---
+
+<li
+  class="w-80 sm:w-[500px] p-5 rounded-lg bg-gray-700 text-white flex flex-col gap-5 justify-center"
+>
+  <div class="text-center">
+    <h2 class="font-bold text-lg">{title}</h2>
+    <p class="font-thin">{description}</p>
+  </div>
+
+  <a href={`posts/${url}`}>
+    <div
+      class="bg-blue-800 text-center font-bold hover:bg-gray-800 p-2 rounded-lg"
+    >
+      Leer más
+    </div>
+  </a>
+</li>

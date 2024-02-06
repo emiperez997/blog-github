@@ -1,16 +1,14 @@
 ---
-
+import Title from "../components/Title.astro";
+import Layout from "../layouts/Layout.astro";
 ---
 
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width" />
-    <meta name="generator" content={Astro.generator} />
-    <title>My blog with Astro</title>
-  </head>
-  <body>
-    <h1>My blog web</h1>
-  </body>
-</html>
+<Layout title="Home">
+  <Title>
+    <span slot="title">Bienvenidos a nuestro blog</span>
+    <span slot="subtitle">
+      En este blog encontrarás contenido sobre tecnología, desarrollo web y
+      programación.
+    </span>
+  </Title>
+</Layout>
