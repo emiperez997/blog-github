@@ -8,12 +8,6 @@ const { frontmatter } = Astro.props;
 
 // const allPosts = await Astro.glob("../pages/posts/*.md");
 const allPosts = await getCollection("posts");
-
-const hasNextPost = allPosts.findIndex((post) => {
-  return Astro.url.pathname.includes(post.slug);
-});
-
-console.log(hasNextPost);
 ---
 
 <Layout title={frontmatter.title}>
@@ -50,7 +44,7 @@ console.log(hasNextPost);
 
   <div class="w-full flex justify-center p-5">
     <div class="w-80 sm:w-[550px] flex justify-start items-center">
-      <a href="/blog" class="text-lg font-bold"> ← Volver a todos los post</a>
+      <a href="/blog" class="text-lg font-bold"> ← Volver</a>
     </div>
   </div>
 </Layout>

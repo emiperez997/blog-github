@@ -31,11 +31,6 @@ allPosts.sort(
             date={date}
             description={description}
             url={post.slug}
-            date={new Date(date).toLocaleDateString("es-ES", {
-              year: "numeric",
-              month: "long",
-              day: "numeric",
-            })}
           />
         );
       })

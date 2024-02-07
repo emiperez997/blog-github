@@ -47,11 +47,7 @@ const latestPosts = allPosts
             title={post.data.title}
             url={post.slug}
             description={post.data.description}
-            date={new Date(post.data.pubDate).toLocaleDateString("es-ES", {
-              year: "numeric",
-              month: "long",
-              day: "numeric",
-            })}
+            date={post.data.pubDate}
           />
         ))
       }
