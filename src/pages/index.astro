@@ -59,23 +59,4 @@ const latestPosts = allPosts
       {tags.map((tag) => <TagCard tag={tag} />)}
     </ul>
   </section>
-
-  <section>
-    <Greeting
-      messages={[
-        "¡Hola! ¿En qué podemos ayudarte?",
-        "Holis, ¿en qué podemos ayudarte?",
-        "Necesitas ayuda? Estamos aquí para ayudarte.",
-      ]}
-    />
-
-    <Greeting
-      client:load
-      messages={[
-        "¡Hola! ¿En qué podemos ayudarte?",
-        "Holis, ¿en qué podemos ayudarte?",
-        "Necesitas ayuda? Estamos aquí para ayudarte.",
-      ]}
-    />
-  </section>
 </Layout>
