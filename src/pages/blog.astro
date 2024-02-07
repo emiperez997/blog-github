@@ -4,15 +4,11 @@ import BlogPost from "../components/BlogPost.astro";
 import Title from "../components/Title.astro";
 import Layout from "../layouts/Layout.astro";
 
-// Astro.glob: Nos permite buscar archivos en el sistema de archivos
 const allPosts = await getCollection("posts");
 
-// Ordenamos los posts por fecha de publicación
-const sortedPosts = allPosts.sort((a, b) => {
-  return (
-    new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime()
-  );
-});
+allPosts.sort(
+  (a, b) => Number(new Date(b.data.pubDate)) - Number(new Date(a.data.pubDate))
+);
 ---
 
 <Layout title="Blog">
@@ -26,7 +22,7 @@ const sortedPosts = allPosts.sort((a, b) => {
 
   <ul class="flex flex-col w-full justify-center items-center p-5 gap-5">
     {
-      sortedPosts.map((post) => {
+      allPosts.map((post) => {
         const { title, pubDate: date, description } = post.data;
 
         return (

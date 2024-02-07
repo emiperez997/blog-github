@@ -34,16 +34,6 @@ const inactive =
     </a>
 
     <a
-      href="/about"
-      class:list={[
-        "text-lg font-semibold",
-        location.includes("/about") ? active : inactive,
-      ]}
-    >
-      Acerca de
-    </a>
-
-    <a
       href="/blog"
       class:list={[
         "text-lg font-semibold",
@@ -63,6 +53,16 @@ const inactive =
       ]}
     >
       Tags
+    </a>
+
+    <a
+      href="/about"
+      class:list={[
+        "text-lg font-semibold",
+        location.includes("/about") ? active : inactive,
+      ]}
+    >
+      Acerca de
     </a>
     <ThemeIcon />
   </div>
