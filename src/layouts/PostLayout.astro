@@ -12,6 +12,8 @@ const allPosts = await getCollection("posts");
 const hasNextPost = allPosts.findIndex((post) => {
   return Astro.url.pathname.includes(post.slug);
 });
+
+console.log(hasNextPost);
 ---
 
 <Layout title={frontmatter.title}>
@@ -47,23 +49,8 @@ const hasNextPost = allPosts.findIndex((post) => {
   </Content>
 
   <div class="w-full flex justify-center p-5">
-    <div class="w-80 sm:w-[550px] flex justify-between items-center">
-      {
-        hasNextPost > 0 ? (
-          <a href={allPosts[hasNextPost - 1].slug} class="text-lg font-bold">
-            ← Anterior
-          </a>
-        ) : (
-          <div />
-        )
-      }
-      {
-        hasNextPost < allPosts.length - 1 && (
-          <a href={allPosts[hasNextPost + 1].slug} class="text-lg font-bold">
-            Siguiente →
-          </a>
-        )
-      }
+    <div class="w-80 sm:w-[550px] flex justify-start items-center">
+      <a href="/blog" class="text-lg font-bold"> ← Anterior</a>
     </div>
   </div>
 </Layout>
