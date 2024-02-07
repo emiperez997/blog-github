@@ -1,13 +1,13 @@
 ---
 layout: ../../layouts/PostLayout.astro
 title: "Mi primera publicación en el blog"
-pubDate: 2024-02-06
+pubDate: 2024-02-05
 description: "Este es la primera publicación de mi nuevo blog Astro."
-author: "Alumno de Astro"
+author: "Emiliano Perez"
 image:
   url: "https://docs.astro.build/assets/full-logo-light.png"
   alt: "El logotipo completo de Astro."
-tags: ["astro", "bloguear", "intro"]
+tags: ["astro", "tutorial"]
 url: "post-1"
 ---
 

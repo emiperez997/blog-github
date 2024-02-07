@@ -19,7 +19,7 @@ const allPosts = await Astro.glob("./posts/*.md");
   <ul class="flex flex-col w-full justify-center items-center p-5 gap-5">
     {
       allPosts.map((post) => {
-        const { title, date, description, url, tags } = post.frontmatter;
+        const { title, pubDate: date, description, url } = post.frontmatter;
 
         return (
           <BlogPost
@@ -27,7 +27,7 @@ const allPosts = await Astro.glob("./posts/*.md");
             date={date}
             description={description}
             url={url}
-            tags={tags}
+            date={new Date(date).toLocaleDateString()}
           />
         );
       })

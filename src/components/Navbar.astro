@@ -1,4 +1,6 @@
 ---
+import ThemeIcon from "./ThemeIcon.astro";
+
 const location = Astro.url.pathname;
 
 const active = "text-black dark:text-white underline underline-offset-4";
@@ -7,7 +9,7 @@ const inactive =
 ---
 
 <nav
-  class="w-full bg-slate-500 text-black dark:text-white dark:bg-gray-700 p-5 px-20 flex flex-col md:flex-row justify-center gap-5"
+  class="w-full bg-slate-200 text-black dark:text-white dark:bg-gray-700 p-5 px-20 flex flex-col md:flex-row justify-center gap-5"
 >
   <div class="w-full flex justify-center md:justify-start">
     <a href="/" class="font-bold text-xl md:text-2xl flex gap-2 items-center">
@@ -17,7 +19,9 @@ const inactive =
     </a>
   </div>
 
-  <div class="w-full flex justify-center md:justify-end items-center gap-5">
+  <div
+    class="w-full flex flex-wrap justify-center md:justify-end items-center gap-5"
+  >
     <a
       href="/"
       class:list={[
@@ -32,17 +36,17 @@ const inactive =
       href="/about"
       class:list={[
         "text-lg font-semibold",
-        location === "/about" ? active : inactive,
+        location.includes("/about") ? active : inactive,
       ]}
     >
-      Sobre nosotros
+      Sobre el blog
     </a>
 
     <a
       href="/blog"
       class:list={[
         "text-lg font-semibold",
-        location === "/blog" || location.includes("/posts/")
+        location.includes("/blog") || location.includes("/posts/")
           ? active
           : inactive,
       ]}
@@ -54,10 +58,11 @@ const inactive =
       href="/tags"
       class:list={[
         "text-lg font-semibold",
-        location === "/tags" ? active : inactive,
+        location.includes("/tags") ? active : inactive,
       ]}
     >
       Tags
     </a>
+    <ThemeIcon />
   </div>
 </nav>

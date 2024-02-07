@@ -1,7 +1,7 @@
 ---
 import Layout from "../../layouts/Layout.astro";
 import Title from "../../components/Title.astro";
-import TagList from "../../components/TagList.astro";
+import TagCard from "../../components/TagCard.astro";
 
 const allPost = await Astro.glob("../posts/*.md");
 
@@ -14,7 +14,7 @@ const tags = [...new Set(allPost.flatMap((post) => post.frontmatter.tags))];
     <span slot="subtitle"> Aquí se muestran los tags de los artículos</span>
   </Title>
 
-  <div class="w-full flex justify-center items-center">
-    <TagList tags={tags} />
+  <div class="w-full flex flex-col justify-center items-center gap-5 p-5">
+    {tags.map((tag) => <TagCard tag={tag} />)}
   </div>
 </Layout>

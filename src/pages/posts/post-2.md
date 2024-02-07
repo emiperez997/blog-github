@@ -3,11 +3,11 @@ layout: ../../layouts/PostLayout.astro
 title: "Cómo crear un proyecto con Astro"
 pubDate: 2024-02-06
 description: "Este es la segunda publicación de mi nuevo blog Astro."
-author: "Alumno de Astro"
+author: "Emiliano Perez"
 image:
   url: "https://docs.astro.build/assets/full-logo-light.png"
   alt: "El logotipo completo de Astro."
-tags: ["astro", "bloguear", "npm"]
+tags: ["astro", "tutorial", "npm"]
 url: "post-2"
 ---
 

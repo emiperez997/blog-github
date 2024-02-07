@@ -1,6 +1,23 @@
 ---
+import BlogPost from "../components/BlogPost.astro";
+import Greeting from "../components/Greeting";
+import TagCard from "../components/TagCard.astro";
 import Title from "../components/Title.astro";
 import Layout from "../layouts/Layout.astro";
+
+const allPosts = await Astro.glob("./posts/*.md");
+
+const tags = [
+  ...new Set(allPosts.flatMap((post) => post.frontmatter.tags)),
+].splice(0, 3);
+
+const latestPosts = allPosts
+  .sort(
+    (a, b) =>
+      Number(new Date(b.frontmatter.pubDate)) -
+      Number(new Date(a.frontmatter.pubDate))
+  )
+  .splice(0, 2);
 ---
 
 <Layout title="Home">
@@ -11,4 +28,54 @@ import Layout from "../layouts/Layout.astro";
       programación.
     </span>
   </Title>
+
+  <section class="w-80 sm:w-[550px] p-5">
+    <h2
+      class="p-10 font-bold text-3xl text-center underline underline-offset-4"
+    >
+      Últimas publicaciones
+    </h2>
+    <ul class="flex flex-col w-full justify-center items-center p-5 gap-5">
+      {
+        latestPosts.map((post) => (
+          <BlogPost
+            title={post.frontmatter.title}
+            url={post.frontmatter.url}
+            description={post.frontmatter.description}
+            date={new Date(post.frontmatter.pubDate).toLocaleDateString()}
+          />
+        ))
+      }
+    </ul>
+  </section>
+
+  <section class="w-80 sm:w-[550px] p-5">
+    <h2
+      class="p-10 font-bold text-3xl text-center underline underline-offset-4"
+    >
+      Alguna de nuestras etiquetas
+    </h2>
+    <ul class="flex flex-col w-full justify-center items-center p-5 gap-5">
+      {tags.map((tag) => <TagCard tag={tag} />)}
+    </ul>
+  </section>
+
+  <section>
+    <Greeting
+      messages={[
+        "¡Hola! ¿En qué podemos ayudarte?",
+        "Holis, ¿en qué podemos ayudarte?",
+        "Necesitas ayuda? Estamos aquí para ayudarte.",
+      ]}
+    />
+
+    <Greeting
+      client:load
+      messages={[
+        "¡Hola! ¿En qué podemos ayudarte?",
+        "Holis, ¿en qué podemos ayudarte?",
+        "Necesitas ayuda? Estamos aquí para ayudarte.",
+      ]}
+    />
+  </section>
 </Layout>

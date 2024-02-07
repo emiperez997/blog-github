@@ -7,8 +7,54 @@ import Layout from "../layouts/Layout.astro";
   <Title>
     <h1 class="text-3xl font-bold" slot="title">Acerca de nuestro blog</h1>
     <p class="text-lg font-thin" slot="subtitle">
-      Este es un blog de ejemplo para mostrar cómo se puede usar Astro para
-      construir un sitio web estático.
+      Este es un blog creado para compartir conocimientos sobre Frontend y
+      Backend.
     </p>
   </Title>
+
+  <section class="w-80 sm:w-[550px] p-5 text-center">
+    <h2
+      class="p-10 font-bold text-3xl text-center underline underline-offset-4"
+    >
+      Sobre el autor
+    </h2>
+    <p class="mt-4">
+      Este blog fue creado por <strong>Emiliano Perez</strong>, un Desarrollador
+      Fullstack apasionado por compartir conocimientos. Actualmente trabaja como
+      Profesor en Coderhouse y Universidad de Palermo.
+    </p>
+
+    <p class="mt-4">
+      Si queres saber más sobre mi, podes visitar mi perfil de{" "}
+      <a
+        href="https://www.linkedin.com/in/emiliano-perez-frontend/"
+        target="_blank"
+        class="text-blue-500">Linkedin</a
+      >, o si quieres ver mis proyectos, podes visitar mi perfil de{" "}
+      <a
+        href="https://www.github.com/emiperez997"
+        target="_blank"
+        class="text-blue-500">Github</a
+      >.
+    </p>
+  </section>
+
+  <section class="w-80 sm:w-[550px] p-5 text-center">
+    <h2
+      class="p-10 font-bold text-3xl text-center underline underline-offset-4"
+    >
+      Sobre el blog
+    </h2>
+    <p class="mt-4">
+      Este blog fue creado con el objetivo de compartir conocimientos sobre
+      desarrollo web. En el vas a encontrar tutoriales, tips y consejos sobre
+      Frontend y Backend. Más adelante subiremos cursos, proyectos y recursos.
+    </p>
+    <p class="mt-4">
+      Si te interesa colaborar con el blog, podes enviarnos un mail a
+      <a href="mailto:emi.perez997@gmail.com" class="text-blue-500">
+        emi.perez997@gmail.com
+      </a>
+    </p>
+  </section>
 </Layout>

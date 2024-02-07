@@ -14,30 +14,32 @@ const hasNextPost = allPosts.findIndex(
 ---
 
 <Layout title={frontmatter.title}>
-  <Title>
-    <h1 class="text-3xl font-bold" slot="title">{frontmatter.title}</h1>
-    <p class="text-lg font-thin" slot="subtitle">
-      Escrito por {frontmatter.author}
+  <div
+    class="px-10 py-20 w-full sm:w-[550px] flex flex-col justify-center items-center rounded-b-lg bg-gradient-to-t from-blue-300 to-blue-400 dark:text-white dark:bg-gradient-to-t dark:from-blue-900 dark:to-blue-950"
+  >
+    <h1 class="text-3xl font-bold text-center">{frontmatter.title}</h1>
+    <p class="text-lg font-thin">
+      Escrito por <strong class="font-bold">{frontmatter.author}</strong>
     </p>
     <TagList tags={frontmatter.tags} />
-  </Title>
+  </div>
 
   <Content>
     <slot />
   </Content>
 
   <div class="w-full flex justify-center p-5">
-    <div class="w-80 sm:w-[500px] bg-slate-500 p-5 rounded-lg">
+    <div class="w-80 sm:w-[550px] bg-slate-500 p-5 rounded-lg">
       <img src={frontmatter.image.url} alt={frontmatter.image.alt} class="" />
     </div>
   </div>
 
   <div class="w-full flex justify-center p-5">
-    <div class="w-80 sm:w-[500px] flex justify-between items-center">
+    <div class="w-80 sm:w-[550px] flex justify-between items-center">
       {
         hasNextPost > 0 ? (
           <a href={allPosts[hasNextPost - 1].url} class="text-lg font-bold">
-            ← Anterior Post
+            ← Anterior
           </a>
         ) : (
           <div />
@@ -46,7 +48,7 @@ const hasNextPost = allPosts.findIndex(
       {
         hasNextPost < allPosts.length - 1 && (
           <a href={allPosts[hasNextPost + 1].url} class="text-lg font-bold">
-            Siguiente Post →
+            Siguiente →
           </a>
         )
       }

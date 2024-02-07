@@ -1,13 +1,13 @@
 ---
 layout: ../../layouts/PostLayout.astro
 title: "Cómo instalar Tailwind CSS en un proyecto Astro"
-pubDate: 2024-02-06
+pubDate: 2024-02-08
 description: "Este es la primera publicación de mi nuevo blog Astro."
-author: "Alumno de Astro"
+author: "Emiliano Perez"
 image:
   url: "https://docs.astro.build/assets/full-logo-light.png"
   alt: "El logotipo completo de Astro."
-tags: ["astro", "bloguear", "tailwindcss"]
+tags: ["astro", "tutorial", "tailwindcss"]
 url: "post-3"
 ---
 
