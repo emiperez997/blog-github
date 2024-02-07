@@ -1,37 +1,38 @@
 ---
 import BlogPost from "../components/BlogPost.astro";
-import Greeting from "../components/Greeting";
 import TagCard from "../components/TagCard.astro";
 import Title from "../components/Title.astro";
 import Layout from "../layouts/Layout.astro";
+import { getCollection } from "astro:content";
 
-const allPosts = await Astro.glob("./posts/*.md");
+// const allPosts = await Astro.glob("./posts/*.md");
+const allPosts = await getCollection("posts");
 
-const tags = [
-  ...new Set(allPosts.flatMap((post) => post.frontmatter.tags)),
-].splice(0, 3);
+const tags = [...new Set(allPosts.flatMap((post) => post.data.tags))].splice(
+  0,
+  3
+);
 
 const latestPosts = allPosts
   .sort(
     (a, b) =>
-      Number(new Date(b.frontmatter.pubDate)) -
-      Number(new Date(a.frontmatter.pubDate))
+      Number(new Date(b.data.pubDate)) - Number(new Date(a.data.pubDate))
   )
   .splice(0, 2);
 ---
 
-<Layout title="Home">
+<Layout title="Inicio">
   <Title>
-    <span slot="title">Bienvenidos a nuestro blog</span>
+    <span slot="title">Bienvenidos a Tech Blog</span>
     <span slot="subtitle">
       En este blog encontrarás contenido sobre tecnología, desarrollo web y
       programación.
     </span>
   </Title>
 
-  <section class="w-80 sm:w-[550px] p-5">
+  <section class="w-full sm:w-[550px] p-5">
     <h2
-      class="p-10 font-bold text-3xl text-center underline underline-offset-4"
+      class="py-10 font-bold text-3xl text-center underline underline-offset-4"
     >
       Últimas publicaciones
     </h2>
@@ -39,17 +40,17 @@ const latestPosts = allPosts
       {
         latestPosts.map((post) => (
           <BlogPost
-            title={post.frontmatter.title}
-            url={post.frontmatter.url}
-            description={post.frontmatter.description}
-            date={new Date(post.frontmatter.pubDate).toLocaleDateString()}
+            title={post.data.title}
+            url={post.slug}
+            description={post.data.description}
+            date={new Date(post.data.pubDate).toLocaleDateString()}
           />
         ))
       }
     </ul>
   </section>
 
-  <section class="w-80 sm:w-[550px] p-5">
+  <section class="w-full sm:w-[550px] p-5">
     <h2
       class="p-10 font-bold text-3xl text-center underline underline-offset-4"
     >

@@ -1,10 +1,18 @@
 ---
+import { getCollection } from "astro:content";
 import BlogPost from "../components/BlogPost.astro";
 import Title from "../components/Title.astro";
 import Layout from "../layouts/Layout.astro";
 
 // Astro.glob: Nos permite buscar archivos en el sistema de archivos
-const allPosts = await Astro.glob("./posts/*.md");
+const allPosts = await getCollection("posts");
+
+// Ordenamos los posts por fecha de publicación
+const sortedPosts = allPosts.sort((a, b) => {
+  return (
+    new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime()
+  );
+});
 ---
 
 <Layout title="Blog">
@@ -18,16 +26,20 @@ const allPosts = await Astro.glob("./posts/*.md");
 
   <ul class="flex flex-col w-full justify-center items-center p-5 gap-5">
     {
-      allPosts.map((post) => {
-        const { title, pubDate: date, description, url } = post.frontmatter;
+      sortedPosts.map((post) => {
+        const { title, pubDate: date, description } = post.data;
 
         return (
           <BlogPost
             title={title}
             date={date}
             description={description}
-            url={url}
-            date={new Date(date).toLocaleDateString()}
+            url={post.slug}
+            date={new Date(date).toLocaleDateString("es-ES", {
+              year: "numeric",
+              month: "long",
+              day: "numeric",
+            })}
           />
         );
       })

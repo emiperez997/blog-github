@@ -1,27 +1,45 @@
 ---
-import Title from "../components/Title.astro";
 import Layout from "./Layout.astro";
 import Content from "../components/Content.astro";
 import TagList from "../components/TagList.astro";
+import { getCollection } from "astro:content";
 
 const { frontmatter } = Astro.props;
 
-const allPosts = await Astro.glob("../pages/posts/*.md");
+// const allPosts = await Astro.glob("../pages/posts/*.md");
+const allPosts = await getCollection("posts");
 
-const hasNextPost = allPosts.findIndex(
-  (post) => post.url === Astro.url.pathname
-);
+const hasNextPost = allPosts.findIndex((post) => {
+  return Astro.url.pathname.includes(post.slug);
+});
 ---
 
 <Layout title={frontmatter.title}>
   <div
-    class="px-10 py-20 w-full sm:w-[550px] flex flex-col justify-center items-center rounded-b-lg bg-gradient-to-t from-blue-300 to-blue-400 dark:text-white dark:bg-gradient-to-t dark:from-blue-900 dark:to-blue-950"
+    class="px-10 py-20 w-full flex flex-col justify-center items-center rounded-b-lg bg-gradient-to-t from-blue-300 to-blue-400 dark:text-white dark:bg-gradient-to-t dark:from-blue-900 dark:to-blue-950"
   >
-    <h1 class="text-3xl font-bold text-center">{frontmatter.title}</h1>
-    <p class="text-lg font-thin">
-      Escrito por <strong class="font-bold">{frontmatter.author}</strong>
-    </p>
-    <TagList tags={frontmatter.tags} />
+    <div
+      class="w-full sm:w-[550px] flex flex-col justify-center items-center gap-2"
+    >
+      <h1 class="text-3xl font-bold text-center">{frontmatter.title}</h1>
+      <p class="text-lg font-thin">
+        Escrito por <strong class="font-bold">{frontmatter.author}</strong>
+      </p>
+      <TagList tags={frontmatter.tags} />
+
+      <p>
+        Publicado el{" "}
+        <time date-time={frontmatter.pubDate}>
+          {
+            new Date(frontmatter.pubDate).toLocaleDateString("es-ES", {
+              year: "numeric",
+              month: "long",
+              day: "numeric",
+            })
+          }
+        </time>
+      </p>
+    </div>
   </div>
 
   <Content>
@@ -29,16 +47,10 @@ const hasNextPost = allPosts.findIndex(
   </Content>
 
   <div class="w-full flex justify-center p-5">
-    <div class="w-80 sm:w-[550px] bg-slate-500 p-5 rounded-lg">
-      <img src={frontmatter.image.url} alt={frontmatter.image.alt} class="" />
-    </div>
-  </div>
-
-  <div class="w-full flex justify-center p-5">
     <div class="w-80 sm:w-[550px] flex justify-between items-center">
       {
         hasNextPost > 0 ? (
-          <a href={allPosts[hasNextPost - 1].url} class="text-lg font-bold">
+          <a href={allPosts[hasNextPost - 1].slug} class="text-lg font-bold">
             ← Anterior
           </a>
         ) : (
@@ -47,7 +59,7 @@ const hasNextPost = allPosts.findIndex(
       }
       {
         hasNextPost < allPosts.length - 1 && (
-          <a href={allPosts[hasNextPost + 1].url} class="text-lg font-bold">
+          <a href={allPosts[hasNextPost + 1].slug} class="text-lg font-bold">
             Siguiente →
           </a>
         )

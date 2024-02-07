@@ -2,10 +2,12 @@
 import Layout from "../../layouts/Layout.astro";
 import Title from "../../components/Title.astro";
 import TagCard from "../../components/TagCard.astro";
+import { getCollection } from "astro:content";
 
-const allPost = await Astro.glob("../posts/*.md");
+// const allPost = await Astro.glob("../posts/*.md");
+const allPosts = await getCollection("posts");
 
-const tags = [...new Set(allPost.flatMap((post) => post.frontmatter.tags))];
+const tags = [...new Set(allPosts.flatMap((post) => post.data.tags))];
 ---
 
 <Layout title="Tags">
