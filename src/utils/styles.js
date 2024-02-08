@@ -34,4 +34,14 @@ export const tagBg = {
     hover: "hover:bg-purple-700 dark:hover:bg-purple-900",
     text: "text-purple-100 dark:text-purple-800 hover:text-purple-200 dark:hover:text-purple-100",
   },
+  frontend: {
+    bg: "bg-blue-600 dark:bg-blue-800",
+    hover: "hover:bg-blue-700 dark:hover:bg-blue-900",
+    text: "text-blue-100 dark:text-blue-800 hover:text-blue-200 dark:hover:text-blue-100",
+  },
+  workshop: {
+    bg: "bg-green-600 dark:bg-green-800",
+    hover: "hover:bg-green-700 dark:hover:bg-green-900",
+    text: "text-green-100 dark:text-green-800 hover:text-green-200 dark:hover:text-green-100",
+  },
 };
