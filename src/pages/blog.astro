@@ -3,6 +3,8 @@ import { getCollection } from "astro:content";
 import BlogPost from "../components/BlogPost.astro";
 import Title from "../components/Title.astro";
 import Layout from "../layouts/Layout.astro";
+import { Pagination } from "../components/Pagination";
+import { BlogList } from "../components/BlogList";
 
 const allPosts = await getCollection("posts");
 
@@ -20,7 +22,7 @@ allPosts.sort(
     </p>
   </Title>
 
-  <ul class="flex flex-col w-full justify-center items-center p-5 gap-5">
+  <!-- <ul class="flex flex-col w-full justify-center items-center p-5 gap-5">
     {
       allPosts.map((post) => {
         const { title, pubDate: date, description } = post.data;
@@ -35,5 +37,11 @@ allPosts.sort(
         );
       })
     }
-  </ul>
+  </ul> -->
+
+  <BlogList posts={allPosts} client:load />
+
+  <!-- <div>
+    <Pagination currentPage={currentPage} totalPages={totalPages} client:load />
+  </div> -->
 </Layout>
