@@ -1,0 +1,25 @@
+export const BlogPost = ({ url, title, description, date }) => {
+  return (
+    <li class="w-80 sm:w-[550px] p-5 rounded-lg bg-slate-800 dark:bg-slate-300 dark:text-black text-white flex flex-col gap-5 justify-center">
+      <div class="text-center">
+        <h2 class="font-bold text-lg">{title}</h2>
+        <p>
+          <span class="text-sm font-thin rounded-lg">
+            {new Date(date).toLocaleDateString("es-ES", {
+              year: "numeric",
+              month: "long",
+              day: "numeric",
+            })}
+          </span>
+        </p>
+        <p class="font-thin">{description}</p>
+      </div>
+
+      <a href={`/posts/${url}`}>
+        <div class="bg-blue-800 text-white text-center font-bold hover:bg-blue-900 p-2 rounded-lg">
+          Leer más
+        </div>
+      </a>
+    </li>
+  );
+};
